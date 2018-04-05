@@ -1,0 +1,45 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package grpc;
+
+message AddKategoriMenuReq{
+    string kategorimenu=1;
+    string deskripsi=2;
+    int32 status=3;
+    string createdby=4;
+ 
+}
+
+message ReadKategoriMenuByKategoriMenuReq{
+    string kategorimenu=1;
+}
+
+
+message ReadKategoriMenuByKategoriMenuResp{
+    int32   idkategorimenu=1;
+    string kategorimenu=2;
+    string  deskripsi=3;
+    int32 status=4;
+    string createdby=5;
+}
+
+message ReadKategoriMenuResp{
+    repeated ReadKategoriMenuByKategoriMenuResp allKategoriMenu=1;
+}
+
+message UpdateKategoriMenurReq{
+    int32   idkategorimenu=1;
+    string kategorimenu=2;
+    string  deskripsi=3;
+    int32 status=4;
+    string updateBy=5;
+}
+service KategoriMenuService{
+    rpc AddKategoriMenu (AddKategoriMenuReq) returns (google.protobuf.Empty){};
+    rpc ReadKategoriMenuByKategoriMenu(ReadKategoriMenuByKategoriMenuReq) returns (ReadKategoriMenuByKategoriMenuResp) {};
+    rpc ReadKategoriMenu(google.protobuf.Empty) returns (ReadKategoriMenuResp){};
+    rpc UpdateKategoriMenu(UpdateKategoriMenurReq) returns (google.protobuf.Empty){};
+
+}
